@@ -1,3 +1,10 @@
+package com.example.blog.models;
+
+import com.example.blog.models.User;
+
+import javax.persistence.*;
+import java.security.Timestamp;
+
 @Entity
 @Table(name="blog")
 public class BlogPost{
