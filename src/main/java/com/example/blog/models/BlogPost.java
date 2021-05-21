@@ -6,7 +6,6 @@ import javax.persistence.*;
 import java.security.Timestamp;
 
 @Entity
-@Table(name="blog")
 public class BlogPost{
     @Id
     @GeneratedValue
@@ -18,17 +17,21 @@ public class BlogPost{
     private String description;
 
     @ManyToOne
-    @JoinColumn(name="id",nullable=false)
+    @JoinColumn
     private User createdBy;
 
     private Timestamp createdAt;
-
+    @ManyToOne
+    @JoinColumn
     private User updatedBy;
 
     private Timestamp updatedAt;
 
-    public BlogPost(Long id, String title, String description, User createdBy, Timestamp createdAt, User updatedBy, Timestamp updatedAt) {
-        this.id = id;
+    protected BlogPost() {
+        // this is required by Hibernate
+    }
+
+    public BlogPost(String title, String description, User createdBy, Timestamp createdAt, User updatedBy, Timestamp updatedAt) {
         this.title = title;
         this.description = description;
         this.createdBy = createdBy;
@@ -37,12 +40,11 @@ public class BlogPost{
         this.updatedAt = updatedAt;
     }
 
-    public Long getId() {
-        return id;
+    public BlogPost(Integer id, String title, String description) {
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public Long getId() {
+        return id;
     }
 
     public String getTitle() {
