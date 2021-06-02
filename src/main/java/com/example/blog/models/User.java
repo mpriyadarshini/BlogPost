@@ -13,6 +13,8 @@ public class User{
     @Column(nullable = false, length = 100)
     private String name;
 
+    private String password;
+
     @OneToMany(mappedBy="createdBy")
     private List<BlogPost> blogPost;
 
